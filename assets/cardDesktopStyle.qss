@@ -1,0 +1,23 @@
+QLineEdit { border: 1px solid gray;
+            border-radius: 5px;
+            padding: 0 8px;
+            selection-background-color:darkgray;
+            height:40px;
+            font-size:15px;
+            color:darkgray;}
+
+QGraphicsView { border: 1px solid gray;
+            border-radius: 5px;
+            padding: 0 8px;
+            selection-background-color:darkgray;
+            background:white;}
+
+QListWidget { border: 1px solid gray;
+            border-radius: 5px;
+            padding: 0 8px;
+            selection-background-color:darkgray;
+            font-size:15px;
+            color:darkgray;}
+
+QLabel {    font-size:15px;
+            color:darkgray;}

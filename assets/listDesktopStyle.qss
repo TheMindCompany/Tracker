@@ -1,0 +1,6 @@
+QListWidget { border: 1px solid gray;
+            border-radius: 5px;
+            padding: 0 8px;
+            selection-background-color:darkgray;
+            font-size:15px;
+            color:darkgray;}
