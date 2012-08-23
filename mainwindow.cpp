@@ -32,7 +32,7 @@ void MainWindow::windowFields(void){
 
 void MainWindow::createWindowFields(void){
     sqlModel = new TrackerSql;
-    card = new Card;
+    card = new Card(sqlModel, this);
     cardList = new List(sqlModel, this);
 }
 

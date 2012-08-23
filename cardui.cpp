@@ -4,6 +4,8 @@
 CardUI::CardUI(QWidget *parent) :  QWidget(parent){
     cardFields();
     setLayout(card);
+    cardID = new QLabel("");
+    cardID->setHidden(true);
 }
 
 void CardUI::cardFields(void){

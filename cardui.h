@@ -52,7 +52,8 @@ public:
                 *lnText,
                 *eaText,
                 *edText;
-    QLabel      *eAtLabel;
+    QLabel      *eAtLabel,
+                *cardID;
     QCheckBox   *qaCheckOne,
                 *qaCheckTwo,
                 *isMember;
