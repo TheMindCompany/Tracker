@@ -4,7 +4,7 @@
 CardUI::CardUI(QWidget *parent) :  QWidget(parent){
     cardFields();
     setLayout(card);
-    cardID = new QLabel("");
+    cardID = new QLabel("0");
     cardID->setHidden(true);
 }
 
@@ -26,7 +26,7 @@ void CardUI::arrangeCardFields(void){
     infoRequest = new QVBoxLayout;
     card = new QHBoxLayout;
 
-    card->addLayout(image);
+    //card->addLayout(image);
 
     infoRequest->addLayout(name);
     infoRequest->addLayout(email);
@@ -177,7 +177,7 @@ void CardUI::arrangeSubmitFields(void){
 }
 
 void CardUI::setCardStyle(void){
-    QFile stylesheet("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/amsTracker/assets/cardDesktopStyle.qss");
+    QFile stylesheet("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/assets/cardDesktopStyle.qss");
     stylesheet.open(QFile::ReadOnly);
     QString setSheet = QLatin1String(stylesheet.readAll());
     setStyleSheet(setSheet);
