@@ -4,7 +4,7 @@
 CardUI::CardUI(QWidget *parent) :  QWidget(parent){
     cardFields();
     setLayout(card);
-    cardID = new QLabel("0");
+    cardID = new QLineEdit;
     cardID->setHidden(true);
 }
 
@@ -163,6 +163,10 @@ void CardUI::createSubmitFields(void){
 void CardUI::setSubmitFields(void){
     submitNew->setFixedWidth(100);
     submitNew->setFixedHeight(50);
+    submitEdit->setFixedWidth(100);
+    submitEdit->setFixedHeight(50);
+    submitEdit->setVisible(false);
+    submitEdit->setHidden(true);
     isMember->setText("Member");
 }
 
@@ -171,6 +175,7 @@ void CardUI::arrangeSubmitFields(void){
     submit = new QHBoxLayout;
 
     submitStatus->addWidget(submitNew);
+    submitStatus->addWidget(submitEdit);
     submitStatus->addWidget(isMember);
 
     submit->addLayout(submitStatus);

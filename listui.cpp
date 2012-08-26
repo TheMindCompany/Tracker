@@ -25,4 +25,5 @@ void ListUI::arrangeListFields(void){
 void ListUI::addItem(QSqlQueryModel *model){
      theList->setModel(model);
      theList->setModelColumn(2);
+     theList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }

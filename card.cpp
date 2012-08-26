@@ -1,9 +1,11 @@
 #include "card.h"
 #include <QDebug>
+#include <QSqlError>
 
 Card::Card(QSqlQueryModel *model, QWidget *parent) :  CardUI(parent){
     setFormMap(model);
-    connect(submitNew, SIGNAL(clicked()), this, SLOT(addRecord()));
+    connect(submitNew, SIGNAL(clicked()), this, SLOT(addRecord()));    
+    connect(submitEdit, SIGNAL(clicked()), this, SLOT(editRecord()));
 }
 
 void Card::setFormMap(QSqlQueryModel *model){
@@ -21,30 +23,42 @@ void Card::setFormMap(QSqlQueryModel *model){
 }
 
 void Card::clearFields(void){
+    cardID->clear();
     fnText->clear();
     miText->clear();
     lnText->clear();
     eaText->clear();
     edText->clear();
     isMember->setChecked(false);
+
+    submitEdit->setVisible(false);
+    submitEdit->setHidden(true);
+    submitNew->setVisible(true);
+    submitNew->setHidden(false);
+
 }
 
 void Card::setSubmitEdit(void){
+    submitNew->setVisible(false);
+    submitNew->setHidden(true);
+    submitEdit->setVisible(true);
+    submitEdit->setHidden(false);
 }
 
-void Card::addRecord(){
-    if ( fnText->text() == "")
-        return;
-    else if (lnText->text() == "")
-        return;
-    else if (eaText->text() == "")
-        return;
-    else if (edText->text() == "")
-        return;
-    else if (cardID->text().toInt() < 1){
-        qDebug() << "record in place";
+void Card::addRecord(void){
+    if ( fnText->text() == ""){
         return;
     }
+    else if (lnText->text() == ""){
+        return;
+    }
+    else if (eaText->text() == ""){
+        return;
+    }
+    else if (edText->text() == ""){
+        return;
+    }
+    //else if ((cardID->text().toInt()) > 0) { qDebug() << "already exist!";return; }
 
     QSqlDatabase    db;
 
@@ -57,25 +71,69 @@ void Card::addRecord(){
     db.setPassword("nerdsrule");
     db.open();
 
-    QSqlQuery newRecord;
+    QSqlQuery record;
 
-    newRecord.prepare("INSERT INTO `SurveyPerson` (`surveyPersonID`, `surveyID`, `firstName`, `middleInitial`, `lastName`, `emailAddress`, `emailDomain`, `isMember`)"
+    record.prepare("INSERT INTO `SurveyPerson` (`surveyPersonID`, `surveyID`, `firstName`, `middleInitial`, `lastName`, `emailAddress`, `emailDomain`, `isMember`)"
                       "VALUES (:id, :sid, :f, :mi, :l, :ea, :ed, :member)");
-    newRecord.bindValue(":id", NULL);
-    newRecord.bindValue(":sid", 1);
-    newRecord.bindValue(":f",fnText->text());
-    newRecord.bindValue(":mi",miText->text());
-    newRecord.bindValue(":l",lnText->text());
-    newRecord.bindValue(":ea",eaText->text());
-    newRecord.bindValue(":ed",edText->text());
-    newRecord.bindValue(":member",isMember->isChecked());
-    newRecord.exec();
-    int insertID = newRecord.lastInsertId().toInt();
-    qDebug() << insertID;
+    record.bindValue(":id", NULL);
+    record.bindValue(":sid", 1);
+    record.bindValue(":f",fnText->text());
+    record.bindValue(":mi",miText->text());
+    record.bindValue(":l",lnText->text());
+    record.bindValue(":ea",eaText->text());
+    record.bindValue(":ed",edText->text());
+    record.bindValue(":member",isMember->isChecked());
+    record.exec();
 
-    newRecord.clear();
+    //int insertID = record.lastInsertId().toInt();
+
+    record.clear();
     db.close();
     clearFields();
+
+    emit newRecord();
+    return;
+}
+
+void Card::editFormMapItem(const QModelIndex &index){
+    int id = index.row();
+
+    formMap->setCurrentIndex(id);
+    setSubmitEdit();
+}
+
+void Card::editRecord(void){
+    QSqlDatabase    db;
+
+    db.removeDatabase("Query");
+    db = QSqlDatabase::addDatabase("QMYSQL", "Query");
+    db.setHostName("www.themindspot.com");
+    db.setPort(3306);
+    db.setDatabaseName("themind1_AMS");
+    db.setUserName("themind1_ams");
+    db.setPassword("nerdsrule");
+    db.open();
+
+    QSqlQuery record;
+
+    record.prepare("UPDATE SurveyPerson SET firstName = ?, middleInitial = ?, lastName = ?, emailAddress = ?, emailDomain = ?, isMember = ? WHERE surveyPersonID = ?");
+
+    record.addBindValue(fnText->text());
+    record.addBindValue(miText->text());
+    record.addBindValue(lnText->text());
+    record.addBindValue(eaText->text());
+    record.addBindValue(edText->text());
+    record.addBindValue(isMember->isChecked());
+    record.addBindValue(cardID->text().toInt());
+    record.exec();
+
+    //int insertID = record.lastInsertId().toInt();
+
+    record.clear();
+    db.close();
+    clearFields();
+
+    emit newRecord();
     return;
 }
 

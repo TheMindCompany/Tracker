@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     QWidget *mainW = new QWidget;
@@ -20,10 +21,6 @@ void MainWindow::setWindowProperties(void){
     setFixedWidth(1024);
 }
 
-void MainWindow::initializeList(const QSqlQueryModel model){
-
-}
-
 void MainWindow::windowFields(void){
     createWindowFields();
     setWindowFields();
@@ -36,8 +33,9 @@ void MainWindow::createWindowFields(void){
     cardList = new List(sqlModel, this);
 }
 
-void MainWindow::setWindowFields(void){
-
+void MainWindow::setWindowFields(void){ 
+    connect(card, SIGNAL(newRecord()), this, SLOT(update()));// Refresh list with new entry.
+    connect(cardList->theList, SIGNAL(doubleClicked(QModelIndex)), card, SLOT(editFormMapItem(QModelIndex)));// load selected list item to card.
 }
 
 void MainWindow::arrangeWindowFields(void){
@@ -45,4 +43,14 @@ void MainWindow::arrangeWindowFields(void){
 
     hCard->addWidget(card);
     hCard->addWidget(cardList);
+}
+
+void MainWindow::update(){
+    sqlModel->refresh();
+    cardList->setListItems(sqlModel);
+    cardList->repaint();
+}
+
+void MainWindow::editRecord(void){
+    qDebug() << "test";
 }

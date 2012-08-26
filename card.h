@@ -15,13 +15,18 @@ public:
 
     void setFormMap(QSqlQueryModel *model);
     void clearFields(void);
+    void setSubmitEdit(void);
 
     QDataWidgetMapper *formMap;
-    
+
 signals:
-    
+    void newRecord(void);
+    void setItemEdit(void);
+
 public slots:
-    void addRecord();
+    void addRecord(void);
+    void editFormMapItem(const QModelIndex &index);
+    void editRecord(void);
     
 };
 

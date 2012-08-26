@@ -18,8 +18,6 @@ public:
 
     void setWindowProperties(void);
 
-    void initializeList(const QSqlQueryModel model);
-
     void windowFields(void);
     void createWindowFields(void);
     void setWindowFields(void);
@@ -30,6 +28,10 @@ public:
     TrackerSql *sqlModel;
 
     QHBoxLayout *hCard;
+
+public slots:
+    void update(void);    
+    void editRecord(void);
 };
 
 #endif // MAINWINDOW_H
