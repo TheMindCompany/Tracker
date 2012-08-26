@@ -15,18 +15,9 @@ public:
     void setConnection(void);     // Set the connection parameters.
     void createConnection(void);  // Start the `db` connection.
 
-    void setTableQuery(void); // Create `dbQuery`(s).
-
-    Qt::ItemFlags flags(const QModelIndex &index) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
-
-    bool setFirstName(int personId, const QString &firstName);
-    bool setMiddleInitial(int personId, const QString &middleInitial);
-    bool setLastName(int personId, const QString &lastName);
-    bool setEmailAddress(int personId, const QString &emailAddress);
-    bool setEmailDomain(int personId, const QString &emailDomain);
-    bool setIsMember(int personId, const QString &isMember);
-    virtual void refresh();
+    void setSurveyTableQuery(void);     // Create
+    void setCardTableQuery(void);       // Create
+    void setResponseTableQuery(void);   // Create
 
     QSqlDatabase    db;
     QString         dbHost,

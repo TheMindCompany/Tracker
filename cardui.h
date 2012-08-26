@@ -53,7 +53,11 @@ public:
                 *eaText,
                 *edText,
                 *cardID;
-    QLabel      *eAtLabel;
+    QLabel      *eAtLabel,
+                *missingFirstName,
+                *missingLastName,
+                *missingEmailAddress,
+                *missingEmailDomain;
     QCheckBox   *qaCheckOne,
                 *qaCheckTwo,
                 *isMember;
@@ -68,7 +72,11 @@ public:
     QVBoxLayout *qaColumOne,
                 *imageColum,
                 *submitStatus,
-                *infoRequest;
+                *infoRequest,
+                *firstNameBox,
+                *lastNameBox,
+                *emailAddressBox,
+                *emailDomainBox;
     QGraphicsView *cardImage;
 
 signals:

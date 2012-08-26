@@ -31,33 +31,54 @@ void Card::clearFields(void){
     edText->clear();
     isMember->setChecked(false);
 
-    submitEdit->setVisible(false);
     submitEdit->setHidden(true);
-    submitNew->setVisible(true);
     submitNew->setHidden(false);
-
 }
 
 void Card::setSubmitEdit(void){
-    submitNew->setVisible(false);
     submitNew->setHidden(true);
-    submitEdit->setVisible(true);
     submitEdit->setHidden(false);
 }
 
-void Card::addRecord(void){
+bool Card::readyToSubmit(void){
+    bool ok = true;
+
     if ( fnText->text() == ""){
+        ok = false;
+        missingFirstName->setHidden(false);
+    } else if (missingFirstName->isHidden() == false){
+        missingFirstName->setHidden(true);
+    }
+
+    if (lnText->text() == ""){
+        ok = false;
+        missingLastName->setHidden(false);
+    } else if (missingLastName->isHidden() == false){
+        missingLastName->setHidden(true);
+    }
+
+    if (eaText->text() == ""){
+        ok = false;
+        missingEmailAddress->setHidden(false);
+    } else if (missingEmailAddress->isHidden() == false){
+        missingEmailAddress->setHidden(true);
+    }
+
+    if (edText->text() == ""){
+        ok = false;
+        missingEmailDomain->setHidden(false);
+    } else if (missingEmailDomain->isHidden() == false){
+        missingEmailDomain->setHidden(true);
+    }
+
+    return ok;
+}
+
+void Card::addRecord(void){
+    if ( readyToSubmit() == false){
         return;
     }
-    else if (lnText->text() == ""){
-        return;
-    }
-    else if (eaText->text() == ""){
-        return;
-    }
-    else if (edText->text() == ""){
-        return;
-    }
+
     //else if ((cardID->text().toInt()) > 0) { qDebug() << "already exist!";return; }
 
     QSqlDatabase    db;
@@ -103,6 +124,10 @@ void Card::editFormMapItem(const QModelIndex &index){
 }
 
 void Card::editRecord(void){
+    if ( readyToSubmit() == false){
+        return;
+    }
+
     QSqlDatabase    db;
 
     db.removeDatabase("Query");

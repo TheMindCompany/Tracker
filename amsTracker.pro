@@ -27,4 +27,8 @@ HEADERS  += mainwindow.h \
 
 OTHER_FILES += \
     assets/defaultStyle.qss \
-    assets/cardDesktopStyle.qss
+    assets/cardDesktopStyle.qss \
+    images/favicon114.ico \
+    resource.rc
+
+RC_FILE = resource.rc

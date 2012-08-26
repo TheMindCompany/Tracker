@@ -16,6 +16,7 @@ public:
     void setFormMap(QSqlQueryModel *model);
     void clearFields(void);
     void setSubmitEdit(void);
+    bool readyToSubmit(void);
 
     QDataWidgetMapper *formMap;
 

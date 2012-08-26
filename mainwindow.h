@@ -30,8 +30,7 @@ public:
     QHBoxLayout *hCard;
 
 public slots:
-    void update(void);    
-    void editRecord(void);
+    void update(void);
 };
 
 #endif // MAINWINDOW_H

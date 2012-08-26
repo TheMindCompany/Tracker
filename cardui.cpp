@@ -46,6 +46,8 @@ void CardUI::createNameFields(void){
     fnText = new QLineEdit;
     miText = new QLineEdit;
     lnText = new QLineEdit;
+    missingFirstName = new QLabel("Missing First Name");
+    missingLastName = new QLabel("Missing Last Name");
 }
 
 void CardUI::setNameFields(void){
@@ -53,19 +55,33 @@ void CardUI::setNameFields(void){
     miText->setMaximumWidth(50);
     lnText->setMaximumWidth(190);
 
+    fnText->setMaxLength(50);
+    miText->setMaxLength(2);
+    lnText->setMaxLength(50);
+
     miText->setAlignment(Qt::AlignCenter);
 
     fnText->setPlaceholderText("First Name");
     miText->setPlaceholderText("MI");
     lnText->setPlaceholderText("Last Name");
+
+    missingFirstName->setHidden(true);
+    missingLastName->setHidden(true);
 }
 
 void CardUI::arrangeNameFields(void){
     name = new QHBoxLayout;
+    firstNameBox = new QVBoxLayout;
+    lastNameBox = new QVBoxLayout;
 
-    name->addWidget(fnText);
+    firstNameBox->addWidget(missingFirstName);
+    firstNameBox->addWidget(fnText);
+    lastNameBox->addWidget(missingLastName);
+    lastNameBox->addWidget(lnText);
+
+    name->addLayout(firstNameBox);
     name->addWidget(miText);
-    name->addWidget(lnText);
+    name->addLayout(lastNameBox);
 }
 
 void CardUI::emailFields(void){
@@ -78,19 +94,41 @@ void CardUI::createEmailFields(void){
     eaText = new QLineEdit;
     eAtLabel = new QLabel("@");
     edText = new QLineEdit;
+
+    missingEmailAddress = new QLabel("Missing Email Address");
+    missingEmailDomain = new QLabel("Missing Email Domain");
 }
 
 void CardUI::setEmailFields(void){
+    eaText->setFixedWidth(190);
+    eAtLabel->setFixedWidth(50);
+    edText->setFixedWidth(190);
+
+    eaText->setMaxLength(54);
+    edText->setMaxLength(254);
+
+    eAtLabel->setAlignment(Qt::AlignCenter);
+
     eaText->setPlaceholderText("Email Address");
     edText->setPlaceholderText("Email Domain");
+
+    missingEmailAddress->setHidden(true);
+    missingEmailDomain->setHidden(true);
 }
 
 void CardUI::arrangeEmailFields(void){
     email = new QHBoxLayout;
+    emailAddressBox = new QVBoxLayout;
+    emailDomainBox = new QVBoxLayout;
 
-    email->addWidget(eaText);
+    emailAddressBox->addWidget(missingEmailAddress);
+    emailAddressBox->addWidget(eaText);
+    emailDomainBox->addWidget(missingEmailDomain);
+    emailDomainBox->addWidget(edText);
+
+    email->addLayout(emailAddressBox);
     email->addWidget(eAtLabel);
-    email->addWidget(edText);
+    email->addLayout(emailDomainBox);
 }
 
 void CardUI::qaFields(void){
@@ -165,8 +203,8 @@ void CardUI::setSubmitFields(void){
     submitNew->setFixedHeight(50);
     submitEdit->setFixedWidth(100);
     submitEdit->setFixedHeight(50);
-    submitEdit->setVisible(false);
     submitEdit->setHidden(true);
+    submitNew->setAutoDefault(true);
     isMember->setText("Member");
 }
 

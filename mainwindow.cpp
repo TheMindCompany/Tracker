@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QDebug>
+#include <QIcon>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     QWidget *mainW = new QWidget;
@@ -16,9 +17,15 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::setWindowProperties(void){
-    setWindowTitle("AMS Tracker");
-    setFixedHeight(600);
-    setFixedWidth(1024);
+    setWindowTitle("AITP Membership Sign-Up");
+    setFocus();
+
+    QIcon icon;
+    icon.addFile("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/favicon114.ico");
+    setWindowIcon(icon);
+
+    //setFixedHeight(600);
+    //setFixedWidth(1024);
 }
 
 void MainWindow::windowFields(void){
@@ -28,9 +35,15 @@ void MainWindow::windowFields(void){
 }
 
 void MainWindow::createWindowFields(void){
-    sqlModel = new TrackerSql;
+    sqlModel = new TrackerSql;    
+    sqlModel->setCardTableQuery();
+
     card = new Card(sqlModel, this);
     cardList = new List(sqlModel, this);
+
+    card->setMaximumWidth(450);
+    card->setMaximumHeight(300);
+    cardList->setMaximumWidth(150);
 }
 
 void MainWindow::setWindowFields(void){ 
@@ -40,17 +53,11 @@ void MainWindow::setWindowFields(void){
 
 void MainWindow::arrangeWindowFields(void){
     hCard = new QHBoxLayout;
-
     hCard->addWidget(card);
     hCard->addWidget(cardList);
 }
 
 void MainWindow::update(){
-    sqlModel->refresh();
+    sqlModel->setCardTableQuery();
     cardList->setListItems(sqlModel);
-    cardList->repaint();
-}
-
-void MainWindow::editRecord(void){
-    qDebug() << "test";
 }
