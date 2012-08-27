@@ -11,14 +11,15 @@ class Card : public CardUI
 {
     Q_OBJECT
 public:
-    explicit Card(QSqlQueryModel *model, QWidget *parent = 0);
+    explicit Card(QSqlQueryModel *personModel, QSqlQueryModel *responseModel, QWidget *parent);
 
-    void setFormMap(QSqlQueryModel *model);
-    void clearFields(void);
+    void setFormPersonMap(QSqlQueryModel *model);
+    void setFormResponseMap(QSqlQueryModel *model);
     void setSubmitEdit(void);
     bool readyToSubmit(void);
 
-    QDataWidgetMapper *formMap;
+    QDataWidgetMapper *formPersonMap,
+                      *formResponseMap;
 
 signals:
     void newRecord(void);
@@ -28,6 +29,8 @@ public slots:
     void addRecord(void);
     void editFormMapItem(const QModelIndex &index);
     void editRecord(void);
+    void deleteRecord(void);
+    void clearFields(void);
     
 };
 

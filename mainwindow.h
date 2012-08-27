@@ -25,7 +25,8 @@ public:
 
     Card *card;
     List *cardList;
-    TrackerSql *sqlModel;
+    TrackerSql *sqlPersonModel,
+                *sqlResponseModel;
 
     QHBoxLayout *hCard;
 

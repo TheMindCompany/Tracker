@@ -35,14 +35,17 @@ void MainWindow::windowFields(void){
 }
 
 void MainWindow::createWindowFields(void){
-    sqlModel = new TrackerSql;    
-    sqlModel->setCardTableQuery();
+    sqlPersonModel = new TrackerSql;
+    sqlPersonModel->createConnectionOne();
 
-    card = new Card(sqlModel, this);
-    cardList = new List(sqlModel, this);
+    sqlResponseModel = new TrackerSql;
+    sqlResponseModel->createConnectionTwo();
 
-    card->setMaximumWidth(450);
-    card->setMaximumHeight(300);
+    card = new Card(sqlPersonModel, sqlResponseModel, this);
+    cardList = new List(sqlPersonModel, this);
+
+    card->setMaximumWidth(460);
+    card->setMaximumHeight(450);
     cardList->setMaximumWidth(150);
 }
 
@@ -55,9 +58,11 @@ void MainWindow::arrangeWindowFields(void){
     hCard = new QHBoxLayout;
     hCard->addWidget(card);
     hCard->addWidget(cardList);
+    hCard->setAlignment(card, Qt::AlignTop);
+    hCard->setAlignment(Qt::AlignLeft);
 }
 
 void MainWindow::update(){
-    sqlModel->setCardTableQuery();
-    cardList->setListItems(sqlModel);
+    sqlPersonModel->setCardTableQuery();
+    sqlResponseModel->setResponseTableQuery();
 }

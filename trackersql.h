@@ -13,13 +13,15 @@ public:
 
     void connectSQL(void);        // Start sql connections and initialize `dbQuery`(s).
     void setConnection(void);     // Set the connection parameters.
-    void createConnection(void);  // Start the `db` connection.
+    void createConnectionOne(void);  // Start the `db` connection.
+    void createConnectionTwo(void);  // Start the `db2` connection.
 
     void setSurveyTableQuery(void);     // Create
     void setCardTableQuery(void);       // Create
     void setResponseTableQuery(void);   // Create
 
-    QSqlDatabase    db;
+    QSqlDatabase    db,
+                    db2;
     QString         dbHost,
                     dbName,
                     dbUser,

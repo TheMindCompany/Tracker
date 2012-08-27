@@ -57,26 +57,37 @@ public:
                 *missingFirstName,
                 *missingLastName,
                 *missingEmailAddress,
-                *missingEmailDomain;
-    QCheckBox   *qaCheckOne,
-                *qaCheckTwo,
+                *missingEmailDomain,
+                *cardHeader;
+    QCheckBox   *q0,
+                *q1,
+                *q2,
+                *q3,
+                *q4,
+                *q5,
                 *isMember;
     QPushButton *submitNew,
-                *submitEdit;
+                *submitEdit,
+                *submitReset,
+                *submitDelete;
     QHBoxLayout *card,
                 *name,
                 *email,
                 *qa,
                 *image,
-                *submit;
+                *submit,
+                *editButtons;
     QVBoxLayout *qaColumOne,
+                *qaColumTwo,
                 *imageColum,
                 *submitStatus,
                 *infoRequest,
                 *firstNameBox,
                 *lastNameBox,
                 *emailAddressBox,
-                *emailDomainBox;
+                *emailDomainBox,
+                *eAtBox,
+                *miBox;
     QGraphicsView *cardImage;
 
 signals:
