@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include <QDebug>
-#include <QIcon>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     QWidget *mainW = new QWidget;
@@ -9,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     windowFields();
     setWindowProperties();
 
-    mainW->setLayout(hCard);
+    mainW->setLayout(vCard);
 }
 
 MainWindow::~MainWindow(){
@@ -24,8 +22,8 @@ void MainWindow::setWindowProperties(void){
     icon.addFile("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/favicon114.ico");
     setWindowIcon(icon);
 
-    //setFixedHeight(600);
-    //setFixedWidth(1024);
+    setFixedHeight(440);
+    setFixedWidth(670);
 }
 
 void MainWindow::windowFields(void){
@@ -44,22 +42,32 @@ void MainWindow::createWindowFields(void){
     card = new Card(sqlPersonModel, sqlResponseModel, this);
     cardList = new List(sqlPersonModel, this);
 
-    card->setMaximumWidth(460);
-    card->setMaximumHeight(450);
-    cardList->setMaximumWidth(150);
+    header = new QLabel;
+    header->setAlignment(Qt::AlignRight);
+    header->setPixmap(QPixmap(QString("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/aitpLogo.png"),0,Qt::AutoColor));
 }
 
-void MainWindow::setWindowFields(void){ 
+void MainWindow::setWindowFields(void){
+    card->setMaximumWidth(460);
+    card->setMaximumHeight(450);
+    cardList->setMaximumWidth(175);
+
     connect(card, SIGNAL(newRecord()), this, SLOT(update()));// Refresh list with new entry.
     connect(cardList->theList, SIGNAL(doubleClicked(QModelIndex)), card, SLOT(editFormMapItem(QModelIndex)));// load selected list item to card.
 }
 
 void MainWindow::arrangeWindowFields(void){
     hCard = new QHBoxLayout;
+    vCard = new QVBoxLayout;
+    vCard->setMargin(10);
+
     hCard->addWidget(card);
     hCard->addWidget(cardList);
     hCard->setAlignment(card, Qt::AlignTop);
     hCard->setAlignment(Qt::AlignLeft);
+
+    vCard->addLayout(hCard);
+    vCard->addWidget(header);
 }
 
 void MainWindow::update(){

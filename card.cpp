@@ -1,6 +1,4 @@
 #include "card.h"
-#include <QDebug>
-#include <QSqlError>
 
 Card::Card(QSqlQueryModel *personModel, QSqlQueryModel *responseModel, QWidget *parent) : CardUI(parent){
     setFormPersonMap(personModel);
@@ -128,6 +126,7 @@ void Card::addRecord(void){
     record.bindValue(":ed",edText->text());
     record.bindValue(":member",isMember->isChecked());
     record.exec();
+
     int spid = record.lastInsertId().toInt();
     record.prepare("INSERT INTO `SurveyResult` (`surveyResultID`, `surveyPersonID`, `q0`, `q1`, `q2`, `q3`, `q4`, `q5`)"
                       "VALUES (:id, :spid, :q0, :q1, :q2, :q3, :q4, :q5)");

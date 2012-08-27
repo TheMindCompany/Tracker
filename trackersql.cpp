@@ -1,6 +1,4 @@
 #include "trackersql.h"
-#include <QDebug>
-#include <QSqlError>
 
 TrackerSql::TrackerSql(QObject *parent): QSqlQueryModel(parent) {
     setConnection();

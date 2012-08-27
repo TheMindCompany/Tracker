@@ -3,7 +3,8 @@
 
 #include <QtGui/QMainWindow>
 #include "card.h"
-#include <QLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 #include "list.h"
 #include "trackersql.h"
 #include <QSqlQueryModel>
@@ -27,7 +28,8 @@ public:
     List *cardList;
     TrackerSql *sqlPersonModel,
                 *sqlResponseModel;
-
+    QLabel      *header;
+    QVBoxLayout *vCard;
     QHBoxLayout *hCard;
 
 public slots:

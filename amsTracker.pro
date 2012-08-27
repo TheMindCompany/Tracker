@@ -30,6 +30,7 @@ OTHER_FILES += \
     assets/cardDesktopStyle.qss \
     images/favicon114.ico \
     resource.rc \
-    images/cardHeader.png
+    images/cardHeader.png \
+    images/aitpLogo.png
 
 RC_FILE = resource.rc

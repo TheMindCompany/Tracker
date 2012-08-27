@@ -2,7 +2,9 @@
 #define LISTUI_H
 
 #include <QWidget>
+#include <QLabel>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QListView>
 #include <QSqlQueryModel>
 
@@ -12,8 +14,12 @@ class ListUI : public QWidget
 public:
     explicit ListUI(QWidget *parent = 0);
 
+    QLabel      *listHeader,
+                *listFooter,
+                *listCount;
     QVBoxLayout *listColum;
-    QListView *theList;
+    QHBoxLayout *listTotal;
+    QListView   *theList;
 
 
 protected:
