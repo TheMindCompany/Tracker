@@ -19,11 +19,11 @@ void MainWindow::setWindowProperties(void){
     setFocus();
 
     QIcon icon;
-    icon.addFile("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/favicon114.ico");
+    icon.addFile(":images/favicon114.ico");
     setWindowIcon(icon);
 
     setFixedHeight(440);
-    setFixedWidth(670);
+    //setFixedWidth(670);
 }
 
 void MainWindow::windowFields(void){
@@ -44,13 +44,13 @@ void MainWindow::createWindowFields(void){
 
     header = new QLabel;
     header->setAlignment(Qt::AlignRight);
-    header->setPixmap(QPixmap(QString("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/aitpLogo.png"),0,Qt::AutoColor));
+    header->setPixmap(QPixmap(QString(":images/aitpLogo.png"),0,Qt::AutoColor));
 }
 
 void MainWindow::setWindowFields(void){
-    card->setMaximumWidth(460);
+    //card->setMaximumWidth(460);
     card->setMaximumHeight(450);
-    cardList->setMaximumWidth(175);
+    //cardList->setMaximumWidth(175);
 
     connect(card, SIGNAL(newRecord()), this, SLOT(update()));// Refresh list with new entry.
     connect(cardList->theList, SIGNAL(doubleClicked(QModelIndex)), card, SLOT(editFormMapItem(QModelIndex)));// load selected list item to card.

@@ -3,7 +3,7 @@
 
 CardUI::CardUI(QWidget *parent) :  QWidget(parent){
     cardHeader = new QLabel("");
-    cardHeader->setPixmap(QPixmap(QString("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/cardHeader.png"),0,Qt::AutoColor));
+    cardHeader->setPixmap(QPixmap(QString(":images/cardHeader.png"),0,Qt::AutoColor));
 
     cardID = new QLineEdit;
     cardID->setHidden(true);
@@ -284,7 +284,7 @@ void CardUI::arrangeSubmitFields(void){
 }
 
 void CardUI::setCardStyle(void){
-    QFile stylesheet("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/assets/cardDesktopStyle.qss");
+    QFile stylesheet(":assets/cardDesktopStyle.qss");
     stylesheet.open(QFile::ReadOnly);
     QString setSheet = QLatin1String(stylesheet.readAll());
     setStyleSheet(setSheet);

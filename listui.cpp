@@ -18,8 +18,8 @@ void ListUI::createListFields(void){
     listCount = new QLabel;
     theList = new QListView;
 
-    listHeader->setPixmap(QPixmap(QString("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/listHeader.png"),0,Qt::AutoColor));
-    listFooter->setPixmap(QPixmap(QString("C:/Users/MindTopOne/Desktop/Flash Backup/workplace/Tracker/images/totalInterest.png"),0,Qt::AutoColor));
+    listHeader->setPixmap(QPixmap(QString(":images/listHeader.png"),0,Qt::AutoColor));
+    listFooter->setPixmap(QPixmap(QString(":images/totalInterest.png"),0,Qt::AutoColor));
 }
 
 void ListUI::arrangeListFields(void){

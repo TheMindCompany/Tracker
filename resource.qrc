@@ -1,0 +1,10 @@
+ <!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>images/aitpLogo.png</file>
+     <file>images/cardHeader.png</file>
+     <file>images/favicon114.ico</file>
+     <file>images/listHeader.png</file>
+     <file>images/totalInterest.png</file>
+     <file>assets/cardDesktopStyle.qss</file>
+ </qresource>
+ </RCC>

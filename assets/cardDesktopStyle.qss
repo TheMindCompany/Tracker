@@ -20,8 +20,8 @@ QListWidget { border: 1px solid gray;
             color:darkgray;}
 
 QCheckBox::indicator {
-            width: 25px;
-            height: 25px;}
+            width: 15px;
+            height: 15px;}
 
 QCheckBox { color:darkgray;
             font-size:15px;}

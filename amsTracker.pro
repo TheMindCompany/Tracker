@@ -26,11 +26,10 @@ HEADERS  += mainwindow.h \
     list.h
 
 OTHER_FILES += \
-    assets/defaultStyle.qss \
-    assets/cardDesktopStyle.qss \
-    images/favicon114.ico \
     resource.rc \
-    images/cardHeader.png \
-    images/aitpLogo.png
+    assets/cardDesktopStyle.qss
 
 RC_FILE = resource.rc
+
+RESOURCES += \
+    resource.qrc
