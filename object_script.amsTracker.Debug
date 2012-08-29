@@ -1,0 +1,16 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\cardui.o
+./debug\listui.o
+./debug\trackersql.o
+./debug\card.o
+./debug\list.o
+./debug\moc_mainwindow.o
+./debug\moc_cardui.o
+./debug\moc_listui.o
+./debug\moc_trackersql.o
+./debug\moc_card.o
+./debug\moc_list.o
+./debug\qrc_resource.o
+);

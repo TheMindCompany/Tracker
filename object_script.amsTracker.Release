@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\cardui.o
+./release\listui.o
+./release\trackersql.o
+./release\card.o
+./release\list.o
+./release\moc_mainwindow.o
+./release\moc_cardui.o
+./release\moc_listui.o
+./release\moc_trackersql.o
+./release\moc_card.o
+./release\moc_list.o
+./release\qrc_resource.o
+);
